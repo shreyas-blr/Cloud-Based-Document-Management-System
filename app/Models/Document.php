@@ -15,7 +15,9 @@ class Document extends Model
         'file_type',
         'file_size',
         'category_id',
-        'content_preview' // ← مهم جداً
+        'content_preview',
+        'summary',
+        'summary_points'
     ];
 
     public function category()

@@ -1,0 +1,37 @@
+<svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4F46E5" />
+      <stop offset="50%" stop-color="#6366F1" />
+      <stop offset="100%" stop-color="#8B5CF6" />
+    </linearGradient>
+    <linearGradient id="docGrad" x1="14" y1="12" x2="30" y2="32" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="100%" stop-color="#E0E7FF" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="18" y1="20" x2="26" y2="28" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#0284C7" />
+    </linearGradient>
+    <filter id="shadow" x="0" y="2" width="44" height="42" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#4F46E5" flood-opacity="0.35" />
+    </filter>
+  </defs>
+
+  <!-- Outer Rounded Square with Gradient and Shadow -->
+  <rect x="2" y="2" width="40" height="40" rx="11" fill="url(#bgGrad)" filter="url(#shadow)" />
+
+  <!-- Document Silhouette -->
+  <path d="M14 12C14 10.8954 14.8954 10 16 10H24.5L30 15.5V30C30 31.1046 29.1046 32 28 32H16C14.8954 32 14 31.1046 14 30V12Z" fill="url(#docGrad)" fill-opacity="0.95" />
+  
+  <!-- Folded Corner -->
+  <path d="M24 10V15C24 15.5523 24.4477 16 25 16H30L24 10Z" fill="#C7D2FE" />
+
+  <!-- Document Lines -->
+  <rect x="17" y="19" width="10" height="1.8" rx="0.9" fill="#6366F1" />
+  <rect x="17" y="23" width="7" height="1.8" rx="0.9" fill="#818CF8" />
+
+  <!-- Cloud / Upload Accent Circle at Bottom Right -->
+  <circle cx="28" cy="28" r="6" fill="url(#accentGrad)" stroke="#FFFFFF" stroke-width="1.5" />
+  <path d="M26 28.5L28 26.5L30 28.5M28 26.5V30" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

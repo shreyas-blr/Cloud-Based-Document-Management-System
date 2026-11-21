@@ -1,88 +1,78 @@
+# 📂 DocuVault — Document Intelligence & Cloud DMS
 
-# Cloud-Based Document Management System
+[![Laravel](https://img.shields.io/badge/Laravel-10.x-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com)
+[![PHP](https://img.shields.io/badge/PHP-8.1+-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://php.net)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com)
+[![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
 
-This project is a Laravel-powered cloud-based service for basic data analytics and document management. It was developed as part of the "Cloud and Distributed Systems (SICT 4313)" course at the Islamic University of Gaza.
-
-The system allows users to upload PDF and DOCX documents to the cloud (Dropbox), automatically extract and store their metadata, perform full-text search with highlighted results, and classify them based on predefined categories. It is deployed on ByetHost and uses Dropbox for storage.
-
----
-
-## 📌 Features
-
-- **File Upload**
-  - Supports PDF and Word (DOCX) documents
-  - Files are validated, uploaded to Dropbox, and metadata is extracted automatically
-
-- **Metadata Extraction**
-  - Extracts title, size, type, and original name from files
-  - Extracts and indexes full document text
-
-- **Sorting**
-  - Sorts documents alphabetically based on title (from metadata or content)
-
-- **Search**
-  - Full-text search with case-insensitive keyword matching
-  - Results show highlighted keyword matches
-
-- **Classification**
-  - Documents are automatically categorized based on keyword matching rules
-  - Supports nested categories (parent-child)
-
-- **Statistics Dashboard**
-  - Displays total documents, storage usage, and average operation times
-
-- **Security**
-  - User authentication (Laravel Sanctum)
-  - File validation and access protection
-  - Dropbox token and credentials secured via `.env`
+**DocuVault** is an intelligent Cloud Document Management System (DMS) and text analytics platform. It automatically processes uploaded **PDF** and **Word (DOCX)** documents, extracts body text, classifies them into hierarchical category trees, generates intelligent NLP summaries, and enables instant full-text search with keyword highlighting.
 
 ---
 
-## 🧰 Technologies Used
+## ✨ Key Features
 
-- Laravel 10 (PHP framework)
-- MySQL (Relational Database)
-- Dropbox API (Cloud storage)
-- Bootstrap 5 (Responsive UI)
-- Blade Templating (Laravel Views)
-- Spatie Flysystem Dropbox (Dropbox integration)
-- PhpOffice\PhpWord and Smalot\PdfParser (Text extraction)
+- 📑 **Smart File Upload (PDF & Word DOCX)**
+  - Seamless drag-and-drop and browse interface with real-time file size & format validation (up to 50MB).
+  - Automatically derives meaningful document titles from file metadata and contents.
 
----
+- 🧠 **Intelligent Document Summarizer**
+  - Built-in TF-IDF and NLP-based extractive summarization engine.
+  - Generates cohesive executive summaries and bulleted key takeaways.
+  - Calculates reading time saved (e.g. *97% reduction, 11 min ➔ 1 min read*).
+  - Caches generated summaries in the database for instant sub-millisecond retrieval.
 
-## 📂 Architecture Overview
+- 🏷️ **Hierarchical Auto-Categorization**
+  - Scans document text against predefined multi-tier category taxonomy trees (e.g., *Medical ➔ Prescriptions ➔ Chronic Medications*).
+  - Categorizes files automatically without manual tagging.
 
-- **Frontend**: Laravel Blade + Bootstrap 5 for a responsive and clean UI
-- **Backend**: Laravel controllers and jobs manage uploads, metadata, search, and classification
-- **Cloud Storage**: Dropbox (files stored externally)
-- **Database**: MySQL database hosted on ByetHost (stores metadata, classification, and stats)
-- **Hosting**: ByetHost (cPanel + FTP deployment)
+- 🔍 **Full-Text Search with Snippet Highlighting**
+  - Search across all indexed document bodies, titles, and filenames.
+  - Matches display with instant yellow-highlighted context snippets.
 
----
+- ⚡ **Interactive Dashboard & Real-Time Filtering**
+  - Client-side table filtering by query, category, and format (PDF/DOCX) with zero page reloads.
+  - One-click document preview modal with raw text stream and copy-to-clipboard actions.
+  - Direct in-browser viewing and streaming of original files.
+  - Real-time analytics: total documents, storage footprint (KB/MB), and query latency.
 
-## 🚀 Live Demo
-
-🔗 Live system: [https://documents.byethost10.com/documents](https://documents.byethost10.com/)  
-🔗 Dropbox Storage: [https://www.dropbox.com/home/documents](https://www.dropbox.com/home/documents)  
-🔐 Login credentials:  
-- Email: `rbaraka@iugaza.edu.ps`  
-- Password: `myPassword33`
-
----
-
-## 🧪 How to Use
-
-- Upload a document through the upload page
-- Automatically processes the file: stores in Dropbox + extracts content
-- System assigns category based on keywords
-- Use the search bar to find keywords and view results with highlights
-- Browse documents in dashboard, sorted by title
+- ☁️ **Hybrid Storage Architecture**
+  - Supports local disk storage with automatic cloud storage fallback (Dropbox / S3).
 
 ---
 
-## 📜 License
+## 🛠️ Tech Stack
 
-This project is developed for educational purposes only under the Cloud and Distributed Systems course at the Islamic University of Gaza.
+- **Backend Framework**: Laravel 10 (PHP 8.1+)
+- **Database**: SQLite / MySQL (with Soft Deletes & Indexing)
+- **Document Parsers**: `smalot/pdfparser` (PDF) & `phpoffice/phpword` (DOCX)
+- **Frontend & UI**: Blade Templates, Bootstrap 5.3 (Argon theme), FontAwesome 6, Plus Jakarta Sans
+- **Storage Driver**: Laravel Flysystem (Local & Dropbox API)
 
-Instructor: Dr. Rebhi S. Baraka  
-Contributors: Aya Nabil AlHarazin, Rania Raid Kashkash
+---
+
+## 🚀 Quick Start Guide
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/shreyas-blr/Cloud-Based-Document-Management-System.git
+cd Cloud-Based-Document-Management-System
+```
+
+### 2. Install dependencies & configure environment
+```bash
+composer install
+cp .env.example .env
+php artisan key:generate
+```
+
+### 3. Set up the database
+```bash
+touch database/database.sqlite
+php artisan migrate --seed
+```
+
+### 4. Run the development server
+```bash
+php artisan serve
+```
+Open **[http://localhost:8000](http://localhost:8000)** in your browser.

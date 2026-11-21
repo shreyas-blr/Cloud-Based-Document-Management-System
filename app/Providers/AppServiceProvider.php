@@ -32,26 +32,23 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // Paginator::useBootstrap();
-                Storage::extend('dropbox', function (Application $app, array $config) {
+        Storage::extend('dropbox', function (Application $app, array $config) {
+            $token = $config['authorization_token'] ?? null;
+            if (empty($token)) {
+                return Storage::disk('local');
+            }
 
-            $adapter = new DropboxAdapter(new DropboxClient(
+            try {
+                $adapter = new DropboxAdapter(new DropboxClient($token));
 
-                $config['authorization_token']
-
-            ));
-
-   
-
-            return new FilesystemAdapter(
-
-                new Filesystem($adapter, $config),
-
-                $adapter,
-
-                $config
-
-            );
-
+                return new FilesystemAdapter(
+                    new Filesystem($adapter, $config),
+                    $adapter,
+                    $config
+                );
+            } catch (\Throwable $e) {
+                return Storage::disk('local');
+            }
         });
     }
 }
